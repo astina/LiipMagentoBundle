@@ -66,6 +66,11 @@ class MagentoUser implements MagentoUserInterface
         return null;
     }
 
+    public function getFullName()
+    {
+        return trim(sprintf("%s %s", $this->firstname, $this->lastname));
+    }
+
     public function getFirstname()
     {
         return $this->firstname;

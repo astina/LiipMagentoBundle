@@ -27,7 +27,7 @@ class MagentoUserProvider implements UserProviderInterface
             return new $this->class($customer->getId(), $customer->getEmail(), $customer->getFirstname(), $customer->getLastname(), $customer->getGroupId());
         }
 
-        throw new UsernameNotFoundException(sprintf('User "%s" not found.', $email));
+        throw new UsernameNotFoundException(sprintf('User "%s" not found.', $customer->getEmail()));
     }
 
     public function refreshUser(UserInterface $user)

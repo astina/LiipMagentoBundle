@@ -89,6 +89,9 @@ security:
     factories:
         - "%kernel.root_dir%/../vendor/bundles/Liip/MagentoBundle/Resources/config/security_factories.xml"
 
+    encoders:
+        Liip\MagentoBundle\Security\MagentuUser: sha1
+
     providers:
         magento:
             id: security.user.provider.magento

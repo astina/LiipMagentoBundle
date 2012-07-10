@@ -14,7 +14,7 @@ class MageListener
 {
     /** @var StoreResolverInterface */
     protected $storeResolver;
-    
+
     /** @var ContainerInterface */
     protected $container;
 
@@ -22,9 +22,9 @@ class MageListener
     protected $app;
 
     public function __construct(StoreResolverInterface $resolver, ContainerInterface $container)
-    {           
+    {
         $this->storeResolver = $resolver;
-        $this->container = $container;        
+        $this->container = $container;
     }
 
     /**
@@ -33,12 +33,12 @@ class MageListener
     public function onKernelRequestInitApp(GetResponseEvent $event)
     {
         if (HttpKernelInterface::MASTER_REQUEST === $event->getRequestType()) {
-            
+
             $this->app = \Mage::app();
             // pass the ContainerInterface to magento
             // see https://github.com/pulse00/Magento-Symfony-Module for an example usage
             \Mage::dispatchEvent('symfony_on_kernel_request', array('container' => $this->container));
-            
+
         }
     }
 
