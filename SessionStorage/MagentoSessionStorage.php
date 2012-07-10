@@ -14,9 +14,11 @@ class MagentoSessionStorage implements SessionStorageInterface
      */
     private $session;
 
+    private $sessionNamespace;
+
     public function __construct($sessionNamespace = 'frontend')
     {
-        $this->session = \Mage::getSingleton('core/session', array('name' => $sessionNamespace));
+        $this->sessionNamespace = $sessionNamespace;
     }
 
     /**
@@ -27,6 +29,8 @@ class MagentoSessionStorage implements SessionStorageInterface
         if (self::$sessionStarted) {
             return;
         }
+
+        $this->session = \Mage::getSingleton('core/session', array('name' => $this->sessionNamespace));
 
         // start Magento session
         $this->session->start();
